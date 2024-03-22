@@ -1,2 +1,6 @@
+<<<<<<< HEAD
 ^.*\.Rproj$
+=======
+^FDASPDE\.Rproj$
+>>>>>>> aee7f1813d42cdd3ced2b642a6218e84f1d7da8b
 ^\.Rproj\.user$
