@@ -26,3 +26,4 @@ Variation <- function(Incr){
   }
   return(sarcv)
 }
+#test
