@@ -37,7 +37,8 @@ devtools::install_github("dschroers/FDASPDE")
 
 ## Simple Example with Simulated Data
 
-This is a basic example which shows you how to solve a common problem:
+Subsequently, a simple example for the analysis of covariations in the
+bond market is presented:
 
 ``` r
 library(FDATSM)
@@ -58,3 +59,10 @@ persp(x= (1:100/100), y= (1:100/100), z=  Gaussian.cov(.1,100,100)[1:100,1:100],
 ```
 
 <img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
+
+The jump process $J$ is a compound Poisson process in $L^2(0,1)$ and is
+given as $$J_t = \sum_{i=1}^{N_t}\chi_i,$$ where $N$ is a Poisson
+process with intensity $\lambda>0$ and jumps $\chi\sim(N(0,C))$ for a
+covariance operator $C$ in $L^2(0,1)$ given as an integral kernel
+operator via the kernel $$c(x,y)\propto \exp(-x)\exp(-y)$$ such that
+$\|c\|_{L^2([0,1]^2)}=1$.
