@@ -25,4 +25,4 @@ Variation <- function(Incr){
     }
   }
   return(rcv)
-}
+}###
