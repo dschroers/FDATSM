@@ -8,8 +8,6 @@
 #'
 #' @return List containing the truncation function values and truncation locations
 #' @export
-#'
-#' @examples
 Functional.data.truncation<-function(d, ### number of inverted eigenvalues
                                      C, ### stat. covariance matrix
                                      data, ### data matrix (rows = time)

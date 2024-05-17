@@ -5,8 +5,6 @@
 #'
 #' @return Number d of factors needed to explain rho percent of the variation
 #' @export
-#'
-#' @examples
 d.star<-function(C,rho){
   len<-length(eigen(C)$values)
   scores<-numeric(len)
