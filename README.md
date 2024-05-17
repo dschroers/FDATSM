@@ -25,8 +25,6 @@ outlier robust estimator for the covariations.
 
 <!-- badges: end -->
 
-The goal of FDATSM is to …
-
 ## Installation
 
 You can install the development version of FDATSM from
@@ -37,7 +35,7 @@ You can install the development version of FDATSM from
 devtools::install_github("dschroers/FDASPDE")
 ```
 
-## Example
+## Simple Example with Simulated Data
 
 This is a basic example which shows you how to solve a common problem:
 
@@ -45,6 +43,11 @@ This is a basic example which shows you how to solve a common problem:
 library(FDATSM)
 ## basic example code
 ```
+
+The subsequent code generates samples difference returns in resolution
+$n\times n$ (time and time to maturity) generated from instantaneous
+forward curve model $$df_t = \partial_x f_t dt+ dX_t$$ where
+$$X_t= at +  W_t^Q+ J_t$$ where …
 
 What is special about using `README.Rmd` instead of just `README.md`?
 You can include R chunks like so:
