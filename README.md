@@ -47,28 +47,7 @@ library(FDATSM)
 The subsequent code generates samples difference returns in resolution
 $n\times n$ (time and time to maturity) generated from instantaneous
 forward curve model $$df_t = \partial_x f_t dt+ dX_t$$ where
-$$X_t= at +  W_t^Q+ J_t$$ where …
-
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
-
-``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
-```
-
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date. `devtools::build_readme()` is handy for this.
-
-You can also embed plots, for example:
-
-<img src="man/figures/README-pressure-1.png" width="100%" />
-
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub and CRAN.
+$$X_t=  W_t^Q+ J_t$$ where $W^Q$ is a $Q$-Wiener process for a
+covariance operator $Q$ given by an integral kernel operator with
+integral kernel $q\in L^2([0,1]^2)$ taking the Gaussian form
+$$q(x,y)= \exp(-10 (x-y)^2)$$ which can be plotted:

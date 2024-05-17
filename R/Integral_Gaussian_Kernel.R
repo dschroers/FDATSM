@@ -13,3 +13,4 @@ integral.Gaussian.kernel<- function(i,j,alpha = 0.1,Delta = 1/M){# Calculates < 
   }
   integral2(fun, (i-1)*Delta, i*Delta,  (j-1)*Delta, j*Delta, reltol = 1e-10)$Q
 }
+
