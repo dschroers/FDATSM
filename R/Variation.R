@@ -4,8 +4,6 @@
 #'
 #' @return SARCV as a symmetric matrix
 #' @export
-#'
-#' @examples
 Variation <- function(Incr){
   n<- nrow(Incr)
   m<-ncol(Incr)
@@ -25,4 +23,5 @@ Variation <- function(Incr){
     }
   }
   return(rcv)
-}###
+}####
+
