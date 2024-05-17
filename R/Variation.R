@@ -13,16 +13,16 @@ Variation <- function(Incr){
   for (i in 1:n) {
     sqIncr[i,,]<-Incr[i,]%*%t(Incr[i,])
   }
-  sarcv<-matrix(0,m,m)
+  rcv<-matrix(0,m,m)
   for (i in 1:m) {
     for (j in 1:i) {
-      sarcv[i,j]<-sum(sqIncr[,i,j])
+      rcv[i,j]<-sum(sqIncr[,i,j])
     }
   }
   for (i in 1:m-1) {
     for (j in (i+1):m) {
-      sarcv[i,j]<- sarcv[j,i]
+      rcv[i,j]<- sarcv[j,i]
     }
   }
-  return(sarcv)
+  return(rcv)
 }
