@@ -41,6 +41,7 @@ This is a basic example which shows you how to solve a common problem:
 
 ``` r
 library(FDATSM)
+library(pracma)
 ## basic example code
 ```
 
@@ -51,3 +52,9 @@ $$X_t=  W_t^Q+ J_t$$ where $W^Q$ is a $Q$-Wiener process for a
 covariance operator $Q$ given by an integral kernel operator with
 integral kernel $q\in L^2([0,1]^2)$ taking the Gaussian form
 $$q(x,y)= \exp(-10 (x-y)^2)$$ which can be plotted:
+
+``` r
+persp(x= (1:100/100), y= (1:100/100), z=  Gaussian.cov(.1,100,100)[1:100,1:100],xlab= "Time to maturity (years)",ylab= "",zlab = "")
+```
+
+<img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
