@@ -1,8 +1,8 @@
 Package: FDATSM
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Functional Data Analysis for Covariations in Term Structure Models
 Version: 0.1.0
-Author: Who wrote it
+Author: Dennis Schroers
 Maintainer: The package maintainer <yourself@somewhere.net>
 Description: More about what it does (maybe more than one line)
     Use four spaces when indenting paragraphs within the Description.
