@@ -9,7 +9,7 @@ Gaussian.cov<-function(alpha,M,n){
   q<-matrix(0, M+n,M+n)
   for (i in 1:(M+n)) {
     for (j in 1:i) {
-      q[i,j]<-integral.Gaussian.kernel(i,j, alpha = 50, Delta= 1/M)
+      q[i,j]<-integral.Gaussian.kernel(i,j, alpha = alpha, Delta= 1/M)
       q[j,i]<- q[i,j]
     }
   }##Calculate the local averaged fractional kernel

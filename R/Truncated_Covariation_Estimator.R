@@ -74,5 +74,3 @@ Truncated.Covariation.estimator<- function(adjusted.increments,# list containing
   return(list("IV" = Truncated.variation, "locs" = locs, "Crough" =CRough, "adj.increments" = adjusted.increments))
 }
 
-
-
