@@ -21,7 +21,7 @@ Variation <- function(Incr){
   }
   for (i in 1:m-1) {
     for (j in (i+1):m) {
-      rcv[i,j]<- sarcv[j,i]
+      rcv[i,j]<- rcv[j,i]
     }
   }
   return(rcv)
