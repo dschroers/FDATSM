@@ -1,4 +1,8 @@
-
+#' @title Simulator
+#' @description Simulates from a forward curve model
+#' @param M Number of simulated maturity grid points
+#'@param n Number of Days
+#' @export
 
 #library(MASS)
 

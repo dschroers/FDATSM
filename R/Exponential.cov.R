@@ -3,7 +3,7 @@
 #' @param M Number of simulated maturity grid points
 #'@param n Number of Days
 #' @export
-Exponential.cov<-function(alpha,M,n){
+Exponential.cov<-function(M,n){
   q<-matrix(0, M+n,M+n)
   for (i in 1:(M+n)) {
     for (j in 1:i) {
@@ -13,3 +13,5 @@ Exponential.cov<-function(alpha,M,n){
   }##Calculate the local averaged fractional kernel
   return(q)
 }
+
+

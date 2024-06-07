@@ -5,7 +5,7 @@
 #' @param Delta Length of each interval
 #' @return Integral value
 #' @export
-integral.Gaussian.kernel<- function(i,j,Delta = 1/M){# Calculates < Q_2 1_{[(j-1)Delta,jDelta],1_{[(j-1)Delta,jDelta]>}
+integral.Exponential.kernel<- function(i,j,Delta = 1/M){# Calculates < Q_2 1_{[(j-1)Delta,jDelta],1_{[(j-1)Delta,jDelta]>}
   fun <- function(x,y){
     exp(-x)*exp(-y)
   }
