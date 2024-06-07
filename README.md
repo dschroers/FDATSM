@@ -55,7 +55,7 @@ integral kernel $q\in L^2([0,1]^2)$ taking the Gaussian form
 $$q(x,y)= \exp(-10 (x-y)^2)$$ which can be plotted:
 
 ``` r
-persp(x= (1:100/100), y= (1:100/100), z=  Gaussian.cov(.1,100,100)[1:100,1:100],xlab= "Time to maturity (years)",ylab= "",zlab = "")
+persp(z=  Gaussian.cov(.1,100,100)[1:100,1:100],xlab= "Time to maturity (years)")
 ```
 
 <img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
