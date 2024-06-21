@@ -96,5 +96,5 @@ Simulator<-function(n=100, # number of time points
 }
 
 
-SIM<-Simulator(100,100, q= q, k=k)
+#SIM<-Simulator(100,100, q= q, k=k)
 

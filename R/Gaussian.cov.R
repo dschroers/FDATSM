@@ -5,6 +5,7 @@
 #'@param n Number of Days
 #' @return Number d of factors needed to explain rho percent of the variation
 #' @export
+
 Gaussian.cov<-function(alpha,M,n){
   q<-matrix(0, M+n,M+n)
   for (i in 1:(M+n)) {
@@ -15,3 +16,4 @@ Gaussian.cov<-function(alpha,M,n){
   }##Calculate the local averaged fractional kernel
   return(q)
 }
+
