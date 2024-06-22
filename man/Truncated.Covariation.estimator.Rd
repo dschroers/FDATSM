@@ -14,8 +14,21 @@ Truncated.Covariation.estimator(
 )
 }
 \arguments{
-\item{l}{}
+\item{adjusted.increments}{xyz}
+
+\item{Threshhold.manually}{xyz}
+
+\item{quantile.adjustment}{xyz}
+
+\item{truncation}{xyz}
+
+\item{Prelim.truncation.quantile}{xyz}
+
+\item{l}{xyz}
+}
+\value{
+xyz
 }
 \description{
-Truncated covariation estimator
+xyz
 }

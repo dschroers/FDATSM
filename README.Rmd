@@ -4,7 +4,7 @@ output: github_document
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-```{r, include = FALSE}
+```{r setup, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
@@ -61,7 +61,7 @@ which can be plotted:
 ```{r}
 persp(z=  Exponential.cov(100,100)[1:100,1:100],xlab= "Time to maturity (years)")
 ```
-Now simulate the data
+Now simulate the data:
 ```{r}
 SIM<-Simulator(100,100, q= Gaussian.cov(10,100,100), k=Exponential.cov(100,100))
 ```

@@ -1,13 +1,13 @@
 #' @title Truncated covariation estimator
-#' @description
-#' @param adjusted.increments
-#' @param Threshhold.manually
-#' @param quantile.adjustment
-#' @param truncation
-#' @param Prelim.truncation.quantile
-#' @param l
+#' @description xyz
+#' @param adjusted.increments xyz
+#' @param Threshhold.manually xyz
+#' @param quantile.adjustment xyz
+#' @param truncation xyz
+#' @param Prelim.truncation.quantile xyz
+#' @param l xyz
 #'
-#' @return
+#' @return xyz
 #' @export
 Truncated.Covariation.estimator<- function(adjusted.increments,# list containing the sampled adjusted increments.
                                            Threshhold.manually = FALSE,  ### if an truncation level should be
