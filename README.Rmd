@@ -36,6 +36,7 @@ Subsequently, a simple example for the analysis of covariations in the bond mark
 ```{r example}
 library(FDATSM)
 library(pracma)
+library(MASS)
 ## basic example code
 ```
 
@@ -56,4 +57,12 @@ where $N$ is a Poisson process with intensity $\lambda>0$ and jumps $\chi\sim(N(
 $$c(x,y)\propto \exp(-x)\exp(-y)$$
 such that $\|c\|_{L^2([0,1]^2)}=1$.
 
+which can be plotted:
+```{r}
+persp(z=  Exponential.cov(100,100)[1:100,1:100],xlab= "Time to maturity (years)")
+```
+Now simulate the data
+```{r}
+SIM<-Simulator(100,100, q= Gaussian.cov(10,100,100), k=Exponential.cov(100,100))
+```
 

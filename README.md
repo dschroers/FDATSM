@@ -66,3 +66,11 @@ process with intensity $\lambda>0$ and jumps $\chi\sim(N(0,C))$ for a
 covariance operator $C$ in $L^2(0,1)$ given as an integral kernel
 operator via the kernel $$c(x,y)\propto \exp(-x)\exp(-y)$$ such that
 $\|c\|_{L^2([0,1]^2)}=1$.
+
+which can be plotted:
+
+``` r
+persp(z=  Exponential.cov(100,100)[1:100,1:100],xlab= "Time to maturity (years)")
+```
+
+<img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" />
