@@ -1,8 +1,10 @@
 #' @title Simulator
 #' @description Simulates from a forward curve model
 #' @param M Number of simulated maturity grid points
-#'@param n Number of Days
+#' @param n Number of Days
 #' @export
+
+
 
 #library(MASS)
 
@@ -82,6 +84,7 @@ Simulator<-function(n=100, # number of time points
 
   if(jump.summary.plot == TRUE){
     norms<-numeric(n)
+    norms.cont<-numeric(n)
     for (i in 1:n) {
       norms[i]<-L2.norm(data[i,])
       norms.cont[i]<-L2.norm(cont.data[i,])

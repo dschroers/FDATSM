@@ -7,6 +7,7 @@
 #'
 #' @return Vector containing the index of data points to be truncated
 #' @export
+
 quantile.truncation<-function(data,q){
   norms.data<-numeric(nrow(data))
   for (i in 1:nrow(data)) {
