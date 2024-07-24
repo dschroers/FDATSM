@@ -9,7 +9,7 @@
 #'
 #' @return xyz
 #' @export
-Truncated.Covariation.estimator<- function(adjusted.increments,# list containing the sampled adjusted increments.
+Truncated.Covariation.estimator<- function(adjusted.increments,# sampled adjusted increments.
                                            Threshhold.manually = FALSE,  ### if an truncation level should be
                                            #################inducednmanually. If FALSE, the
                                            ################# automated threshholding technique
@@ -26,11 +26,11 @@ Truncated.Covariation.estimator<- function(adjusted.increments,# list containing
 ){
   n= nrow(adjusted.increments)
   dimension.of.estimator = ncol(adjusted.increments)
+
   ######Now conduct the truncation procedure
+  #Start with the preliminary estimator for the quadratic variation
   rough.locs<-quantile.truncation(adjusted.increments,Prelim.truncation.quantile)
   CRough<-Variation(adjusted.increments[-rough.locs,])
-  #m.rough<-colMeans(adjusted.increments[-rough.locs,])
-  #CRough<-ncol(adjusted.increments[-rough.locs,])*(cov(adjusted.increments[-rough.locs,])+(m.rough)%*%t(m.rough))
 
 
   EG<-eigen(CRough)

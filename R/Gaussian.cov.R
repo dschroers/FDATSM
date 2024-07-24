@@ -17,3 +17,19 @@ Gaussian.cov<-function(alpha,M,n){
   return(q)
 }
 
+
+
+c<-matrix(0,100,100)
+q<-matrix(1,100,100)
+rc<-matrix(0,100,100)
+for (i in 1:100) {
+  for (j in 1:100) {
+    q[i,j]=1-(i*j/1000000)
+    c[i,j]=(1-(max(i,j)/100))
+    rc[i,j]=min(i,j)/100
+  }
+}
+persp(c, xlab="", ylab= "", zlim = c(0,1), theta = 180, phi = 28)
+persp(rc, xlab="", ylab= "", zlim = c(0,1), theta = 180, phi = 28)
+persp(z=q, xlab="", ylab= "", zlim = c(0,1), theta = 120, phi = 28)
+?persp
