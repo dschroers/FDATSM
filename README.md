@@ -53,9 +53,12 @@ forward curve model
 
 $$df_t = \partial_x f_t dt+ dX_t$$
 
-where $$X_t=  W_t^Q+ J_t$$ where $W^Q$ is a $Q$-Wiener process for a
+where
+
+$$X_t=  W_t^Q+ J_t$$ where $W^Q$ is a $Q$-Wiener process for a
 covariance operator $Q$ given by an integral kernel operator with
 integral kernel $q\in L^2([0,1]^2)$ taking the Gaussian form
+
 $$q(x,y)= \exp(-10 (x-y)^2)$$ which can be plotted:
 
 ``` r
@@ -65,11 +68,14 @@ persp(z=  Gaussian.cov(.1,100,100)[1:100,1:100],xlab= "Time to maturity (years)"
 <img src="man/figures/README-unnamed-chunk-1-1.png" width="100%" />
 
 The jump process $J$ is a compound Poisson process in $L^2(0,1)$ and is
-given as $$J_t = \sum_{i=1}^{N_t}\chi_i,$$ where $N$ is a Poisson
-process with intensity $\lambda>0$ and jumps $\chi\sim(N(0,C))$ for a
-covariance operator $C$ in $L^2(0,1)$ given as an integral kernel
-operator via the kernel $$c(x,y)\propto \exp(-x)\exp(-y)$$ such that
-$\|c\|_{L^2([0,1]^2)}=1$.
+given as
+
+$$J_t = \sum_{i=1}^{N_t}\chi_i,$$ where $N$ is a Poisson process with
+intensity $\lambda>0$ and jumps $\chi\sim(N(0,C))$ for a covariance
+operator $C$ in $L^2(0,1)$ given as an integral kernel operator via the
+kernel
+
+$$c(x,y)\propto \exp(-x)\exp(-y)$$ such that $\|c\|_{L^2([0,1]^2)}=1$.
 
 which can be plotted:
 
