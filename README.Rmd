@@ -41,6 +41,7 @@ library(MASS)
 ```
 
 The subsequent code generates samples difference returns in resolution $n\times n$ (time and time to maturity)  generated from instantaneous forward curve model 
+
 $$df_t = \partial_x f_t dt+ dX_t$$
 
 where
