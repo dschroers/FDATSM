@@ -41,7 +41,11 @@ library(MASS)
 ```
 
 The subsequent code generates samples difference returns in resolution $n\times n$ (time and time to maturity)  generated from instantaneous forward curve model 
-$$df_t = \partial_x f_t dt+ dX_t$$
+
+```{latex}
+df_t = \partial_x f_t dt+ dX_t
+```
+
 where
 $$X_t=  W_t^Q+ J_t$$
 where $W^Q$ is a $Q$-Wiener process for a covariance operator $Q$ given by an integral kernel operator with integral kernel $q\in L^2([0,1]^2)$ taking the Gaussian form
