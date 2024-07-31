@@ -51,9 +51,7 @@ The subsequent code generates samples difference returns in resolution
 $n\times n$ (time and time to maturity) generated from instantaneous
 forward curve model
 
-``` latex
-df_t = \partial_x f_t dt+ dX_t$$
-```
+$$df_t = \partial_x f_t dt+ dX_t$$
 
 where $$X_t=  W_t^Q+ J_t$$ where $W^Q$ is a $Q$-Wiener process for a
 covariance operator $Q$ given by an integral kernel operator with
@@ -64,7 +62,7 @@ $$q(x,y)= \exp(-10 (x-y)^2)$$ which can be plotted:
 persp(z=  Gaussian.cov(.1,100,100)[1:100,1:100],xlab= "Time to maturity (years)", zlab = "", ylab = "")
 ```
 
-<img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-1-1.png" width="100%" />
 
 The jump process $J$ is a compound Poisson process in $L^2(0,1)$ and is
 given as $$J_t = \sum_{i=1}^{N_t}\chi_i,$$ where $N$ is a Poisson
@@ -79,4 +77,4 @@ which can be plotted:
 persp(z=  Exponential.cov(100,100)[1:100,1:100],xlab= "Time to maturity (years)")
 ```
 
-<img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
