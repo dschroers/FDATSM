@@ -1,22 +1,13 @@
 #' @title Truncated covariation estimator
 #' @description xyz
-#' @param adjusted.increments xyz
-#' @param Threshhold.manually xyz
-#' @param quantile.adjustment xyz
-#' @param truncation xyz
-#' @param Prelim.truncation.quantile xyz
+#' @param x xyz
+#' @param tq xyz
 #' @param l xyz
 #'
 #' @return xyz
 #' @export
-Truncated.Covariation.estimator<- function(adjusted.increments,# sampled adjusted increments.
-                                           Threshhold.manually = FALSE,  ### if an truncation level should be
-                                           #################inducednmanually. If FALSE, the
-                                           ################# automated threshholding technique
-                                           ################ is employed
-                                           quantile.adjustment = TRUE,
-                                           truncation = "sparse",
-                                           Prelim.truncation.quantile = 0.75, ## the quantile at which
+Truncated.Covariation.estimator <- function(x,# discount curve data x[i,j]=p_{i\Delta}(j\Delta)
+                                           tq = 0.75, ## the quantile at which
                                            #################the data are truncated for the preliminary
                                            #################covariation estimate. The estimator is then
                                            #################rescaled such that the first eigenvalue of
@@ -24,53 +15,47 @@ Truncated.Covariation.estimator<- function(adjusted.increments,# sampled adjuste
                                            ################# correspond to the interquartile estimate
                                            l = 3###truncation level for the automatic truncation
 ){
-  n= nrow(adjusted.increments)
-  dimension.of.estimator = ncol(adjusted.increments)
+  n= nrow(x) #number of days in which discount curves are considered
+  m= ncol(x) #number of days in the maturity direction
+
+  log.prices<-log(x)
+ adjusted.increments<-matrix(0,n-1,m-2)  #adjusted increment= log(x[i+1, j])-log(x[i, j+1])-log(x[i+1, j-1])+log(x[i, j])
+
+  for(i in 1:(n-1)){
+    adjusted.increments[i,1:(m-1)]<-diff(log.prices[(i+1),1:(m-1)])-diff(log.prices[i,2:m])
+  }
 
   ######Now conduct the truncation procedure
   #Start with the preliminary estimator for the quadratic variation
-  rough.locs<-quantile.truncation(adjusted.increments,Prelim.truncation.quantile)
-  CRough<-Variation(adjusted.increments[-rough.locs,])
 
 
-  EG<-eigen(CRough)
+{  rough.locs<-quantile.truncation(adjusted.increments,tq)
+  C.Prel<-Variation(adjusted.increments[-rough.locs,])
+
+
+  EG<-eigen(C.Prel)
   EG.rough.vectors<-EG$vectors
-  EG.rough.values<-EG$values
 
-  if(quantile.adjustment == TRUE){
-    VALUES<-numeric(n)
-    for (i in 1:n) {
-      VALUES[i]<-t(EG.rough.vectors[,1])%*%adjusted.increments[i,]
+  VALUES<-numeric(n-1)# loadings of the first eigenvalue
+    for (i in 1:(n-1)) {
+      VALUES[i]<-t(EG$vectors[,1])%*%adjusted.increments[i,]
     }
-    #(q.75-q.25)^2/(4 Φ−1(0.75)^2)=σ^2
     q.75<-as.numeric(quantile(VALUES,0.75))
     q.25<-as.numeric(quantile(VALUES,0.25))
-    rho.star<-((q.75-q.25)^2)/((4*(qnorm(0.75)^2)*EG.rough.values[1])/n)
-    #var(VALUES[-rough.locs])
+    rho.star<-((q.75-q.25)^2)/((4*(qnorm(0.75)^2)*EG$values[1])/n)#interquartile range estimator for variance of first eigenvector loadings
 
-    CRough<-rho.star*CRough
-  }
+    C.Prel<-rho.star*C.Prel
+}#calculates the preliminary estimator for the realized covariation
 
-  if(truncation == "sparse"){
-    locs<-Functional.data.truncation(d = d.star(C=CRough[grid,grid],Prelim.truncation.quantile),C= CRough, data =   adjusted.increments, Delta = 1/n,  sd =l)$locations
-  }
-  if(truncation != "sparse"){
-    locs<-Functional.data.truncation(d = d.star(C=CRough,Prelim.truncation.quantile),C= CRough, data =   adjusted.increments, Delta = 1/n,  sd =l)$locations
-  }
+    locs<-Functional.data.truncation(d = d.star(C=C.Prel,tq),C= C.Prel, data =   adjusted.increments, Delta = 1/n,  sd =l)$locations
 
 
   if(length(locs) == 0){
-    #m.locs<-colMeans(adjusted.increments[,])
-    #Truncated.variation<-ncol(adjusted.increments[,])*(cov(adjusted.increments[,])+(m.locs)%*%t(m.locs))
-
     Truncated.variation<-Variation(adjusted.increments)
   }
   if(length(locs) != 0){
-    #m.locs<-colMeans(adjusted.increments[-locs,])
-    # Truncated.variation<-ncol(adjusted.increments[-locs,])*(cov(adjusted.increments[-locs,])+(m.locs)%*%t(m.locs))
-
     Truncated.variation<-Variation(adjusted.increments[-locs,])
   }
-  return(list("IV" = Truncated.variation, "locs" = locs, "Crough" =CRough, "adj.increments" = adjusted.increments))
+  return(list("IV" = Truncated.variation, "locs" = locs, "C.Prel" =C.Prel, "adj.increments" = adjusted.increments))
 }
 
