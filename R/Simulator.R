@@ -79,9 +79,35 @@ Simulator<-function(n=100, # number of time points
   cont.data<- samples[,1:(M+1)]
   data<- samples[,1:(M+1)]+CPP[,1:(M+1)]
 
+
+  #Now transform from difference return data to bond price data
+  Cont.Price.Data<-matrix(0,n,(M+1))
+  Price.Data<-matrix(0,n,(M+1))
+  for (i in 1:n) {
+    for (j in 1:(M+1)) {
+      Cont.Price.Data[i,j]<- exp(-sum(cont.data[i,1:j]))
+      Price.Data[i,j]<- exp(-sum(cont.data[i,1:j]))
+    }
+  }
+
+
   IV<-q[1:M,1:M]
 
-  return(list("f.C"=cont.data, "f" = data,  "jump.locs" = jump.locations,"IV"= IV ))
+
+  #if(jump.summary.plot == TRUE){
+  #  norms<-numeric(n)
+  #  norms.cont<-numeric(n)
+ #   for (i in 1:n) {
+ #     norms[i]<-L2.norm(data[i,])
+ #     norms.cont[i]<-L2.norm(cont.data[i,])
+#    }
+#    plot(x=1:100/100,y=norms, type = "l", ylim=range(norms,norms.cont), lwd =2)
+#    lines(x=1:100/100,y=norms.cont, type = "l", col = "darkgreen", lwd =2)
+#    points(x=jump.locations/100, norms[jump.locations], col = "blue", pch = 4,, lwd =2)
+#    legend("topleft",c("norms","norms (no jumps)", "jumps"),col=c("black","darkgreen", "blue"), pch=c(1,1,4))
+#    }
+
+  return(list("Cont.Prices"=Cont.Price.Data, "Prices"= Price.Data, "f.C"=cont.data, "f" = data,  "jump.locs" = jump.locations,"IV"= IV ))
 }
 
 
