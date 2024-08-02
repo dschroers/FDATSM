@@ -14,12 +14,12 @@ Simulator<-function(n=100, # number of time points
                     rho=50,## Jump size
                     q,##Jump intensity, second jumps process
                     k, #jump kernel
-                    f0 =numeric(n), #initial forward curve
+                    f0 =numeric(n+M+1), #initial forward curve
                     jump.summary.plot = TRUE # if Plot should be provided
 ){
   {kernel.samples<-mvrnorm(n = n, numeric(M+n), q, tol = 1e-3)
     samples<-matrix(0,n,(M+n))
-    samples[1,]<-f0
+    samples[1,]<-numeric(n+M)
     for (i in 2:n) {
       samples[i,1:(M+n-i)]<-samples[i-1,2:(M+1+n-i)]
       samples[i,]<-samples[i,]+kernel.samples[i,]
@@ -75,9 +75,14 @@ Simulator<-function(n=100, # number of time points
     #for(i in 1: n){normalljumps[i]<-L2.norm(jump.samples[i,], from = 0, to = 10)}
     #plot(normalljumps)
   }##simulate the jump part
+{f0ev<-matrix(0,n,(M+1))
+  for (i in 1:n) {
+    f0ev[i,]<-f0[i,i:(i+M+1)]
+  }
+  }#Evolution of the initial condition
 
-  cont.data<- samples[,1:(M+1)]
-  data<- samples[,1:(M+1)]+CPP[,1:(M+1)]
+  cont.data<- f0ev+samples[,1:(M+1)]
+  data<-f0ev+ samples[,1:(M+1)]+CPP[,1:(M+1)]
 
 
   #Now transform from difference return data to bond price data
