@@ -22,7 +22,7 @@ Truncated.Covariation.estimator <- function(x,# discount curve data x[i,j]=p_{i\
  adjusted.increments<-matrix(0,n-1,m-2)  #adjusted increment= log(x[i+1, j])-log(x[i, j+1])-log(x[i+1, j-1])+log(x[i, j])
 
   for(i in 1:(n-1)){
-    adjusted.increments[i,1:(m-1)]<-diff(log.prices[(i+1),1:(m-1)])-diff(log.prices[i,2:m])
+    adjusted.increments[i,1:(m-2)]<-diff(log.prices[(i+1),1:(m-1)])-diff(log.prices[i,2:m])
   }
 
   ######Now conduct the truncation procedure
