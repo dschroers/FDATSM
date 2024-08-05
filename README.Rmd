@@ -82,13 +82,14 @@ such that $\|c\|_{L^2([0,1]^2)}=1$.
 which can be plotted:
 
 ```{r}
-k<-Exponential.cov(100,100)
+k<-10*Exponential.cov(100,100)
 persp(z=k[1:100,1:200],xlab= "Time to maturity (years)")
 ```
 
 
 
 ```{r}
+set.seed(123)
 SIM<-Simulator(100,100, q= q, k=k, f0=numeric(201))
 ```
 
@@ -96,7 +97,6 @@ Now use the Truncated estimator to estimate the volatility
 
 ```{r}
 Est<-Truncated.Covariation.estimator(x=SIM$Prices)
-persp(Est$IV,xlab= "Time to maturity (years)")
 ```
 
 The relative MSE in Hilbert-Schmidt norm is 
@@ -104,4 +104,27 @@ The relative MSE in Hilbert-Schmidt norm is
 ```{r}
 L2.HS.norm(Est$IV-q[1:99,1:99]/100)/L2.HS.norm(q[1:99,1:99]/100)
 ```
+The measured number of factors to explain 99% of the variation in the data is 
 
+```{r}
+which.max(Est$expl.var >.99)
+```
+which is the correct number of factors needed to explain 99% of the variation:
+```{r}
+loads<-numeric(ncol(q[1:99,1:99]))
+    EG<-eigen(q[1:99,1:99])
+    for (i in 1:ncol(q[1:99,1:99])) {
+      loads[i]<-sum(EG$values[1:i])
+    }
+    expl.var<-loads/sum(EG$values)
+which.max(expl.var >.99)
+```
+
+The detected jump locations are
+```{r}
+Est$locs
+```
+while the correct jump locations are
+```{r}
+SIM$jump.locs
+```

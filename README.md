@@ -99,13 +99,14 @@ such that $\|c\|_{L^2([0,1]^2)}=1$.
 which can be plotted:
 
 ``` r
-k<-Exponential.cov(100,100)
+k<-10*Exponential.cov(100,100)
 persp(z=k[1:100,1:200],xlab= "Time to maturity (years)")
 ```
 
 <img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
 
 ``` r
+set.seed(123)
 SIM<-Simulator(100,100, q= q, k=k, f0=numeric(201))
 ```
 
@@ -117,15 +118,45 @@ Est<-Truncated.Covariation.estimator(x=SIM$Prices)
 
 <img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
 
-``` r
-persp(Est$IV,xlab= "Time to maturity (years)")
-```
-
-<img src="man/figures/README-unnamed-chunk-4-2.png" width="100%" />
-
 The relative MSE in Hilbert-Schmidt norm is
 
 ``` r
 L2.HS.norm(Est$IV-q[1:99,1:99]/100)/L2.HS.norm(q[1:99,1:99]/100)
-#> [1] 0.1229131
+#> [1] 0.2028612
+```
+
+The measured number of factors to explain 99% of the variation in the
+data is
+
+``` r
+which.max(Est$expl.var >.99)
+#> [1] 5
+```
+
+which is the correct number of factors needed to explain 99% of the
+variation:
+
+``` r
+loads<-numeric(ncol(q[1:99,1:99]))
+    EG<-eigen(q[1:99,1:99])
+    for (i in 1:ncol(q[1:99,1:99])) {
+      loads[i]<-sum(EG$values[1:i])
+    }
+    expl.var<-loads/sum(EG$values)
+which.max(expl.var >.99)
+#> [1] 5
+```
+
+The detected jump locations are
+
+``` r
+Est$locs
+#> [1] 39 40 63
+```
+
+while the correct jump locations are
+
+``` r
+SIM$jump.locs
+#> [1] 39 40 63
 ```
