@@ -70,7 +70,11 @@ Truncated.Covariation.estimator <- function(x,# discount curve data x[i,j]=p_{i\
       par(mfrow = c(1, 2))
       persp(Truncated.variation,xlab= "Time to maturity (years)")
       plot(expl.var[1:10], type = "p")
+<<<<<<< HEAD
       abline(a =.99, b=0)
+=======
+      abline(.99)
+>>>>>>> a10494b21f2e2f600e25e7ba8acd367cf4639203
     }
 
   return(list("IV" = Truncated.variation, "locs" = locs, "C.Prel" =C.Prel, "adj.increments" = adjusted.increments))
