@@ -6,9 +6,9 @@
 <!-- badges: start -->
 
 The R package `FDATSM` enables quantitative analysis of covariations of
-difference returns as described in the articles [**Robust Functional
-Data Analysis for Stochastic Evolution Equations in Infinite
-Dimensions**](https://arxiv.org/pdf/2401.16286) by [Dennis
+difference returns as described in the articles [**Dynamically
+Consistent Analysis of Realized Covariations in Term Structure
+Models**](https://arxiv.org/abs/2406.19412) by [Dennis
 Schroers](https://github.com/dschroers). The data inputs should be yield
 or discount data over over a prespecified time span (e.g. a quarter, a
 year, a decade) and an upper limit on the time to maturity (e.g. 5
@@ -66,13 +66,14 @@ by an integral kernel operator with integral kernel $q\in L^2([0,1]^2)$
 taking the Gaussian form
 
 ``` math
-q(x,y)= \exp(-10 (x-y)^2)
+q(x,y)= \exp(-10 (x-y)^2),
 ```
 
 which can be plotted:
 
 ``` r
-persp(z=  Gaussian.cov(.1,100,100)[1:100,1:100],xlab= "Time to maturity (years)", zlab = "", ylab = "")
+q<-Gaussian.cov(.1,100,100)
+persp(z=  q[1:100,1:100],xlab= "Time to maturity (years)", zlab = "", ylab = "")
 ```
 
 <img src="man/figures/README-unnamed-chunk-1-1.png" width="100%" />
@@ -81,10 +82,10 @@ The jump process $J$ is a compound Poisson process in $L^2(0,1)$ and is
 given as
 
 ``` math
-J_t = \sum_{i=1}^{N_t}\chi_i
+J_t = \sum_{i=1}^{N_t}\chi_i,
 ```
 
-, where $N$ is a Poisson process with intensity $\lambda>0$ and jumps
+where $N$ is a Poisson process with intensity $\lambda>0$ and jumps
 $\chi\sim(N(0,C))$ for a covariance operator $C$ in $L^2(0,1)$ given as
 an integral kernel operator via the kernel
 
@@ -97,7 +98,8 @@ such that $\|c\|_{L^2([0,1]^2)}=1$.
 which can be plotted:
 
 ``` r
-persp(z=  Exponential.cov(100,100)[1:100,1:100],xlab= "Time to maturity (years)")
+k<-Exponential.cov(100,100)
+persp(z=k[1:100,1:200],xlab= "Time to maturity (years)")
 ```
 
 <img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
