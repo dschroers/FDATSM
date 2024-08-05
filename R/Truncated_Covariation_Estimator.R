@@ -68,10 +68,23 @@ Truncated.Covariation.estimator <- function(x,# discount curve data x[i,j]=p_{i\
 
 
     if(sumplot == TRUE){
-      par(mfrow = c(1, 2))
+      #calculate norms
+      norms<-numeric(n)
+      for (i in 1:n) {
+        norms[i]<-L2.norm(x[i,])
+      }
+      norms<-numeric(n-1)
+      for (i in 1:(n-1)) {
+        adj.norms[i]<-L2.norm(adjusted.increments[i,])
+      }
+      par(mfrow = c(2, 2))
       persp(Truncated.variation,xlab= "Time to maturity (years)")
       plot(expl.var[1:10], type = "p")
       abline(h = .99, col = "gray60")
+      plot(norms, type = "l")
+      points(x=locs, y= norms[locs])
+      plot(adj.norms, type = "l")
+      points(x=locs, y= adj.norms[locs])
     }
 
   return(list("IV" = Truncated.variation, "locs" = locs, "C.Prel" =C.Prel, "adj.increments" = adjusted.increments, "expl.var" =expl.var))
