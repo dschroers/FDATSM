@@ -60,7 +60,7 @@ Truncated.Covariation.estimator <- function(x,# discount curve data x[i,j]=p_{i\
 
 
 
-    if(sumplot = TRUE){
+    if(sumplot == TRUE){
       ##for the dimensionality analysis
       loads<-numeric(ncol(Truncated.variation))
       EG2<-eigen(Truncated.variation)
