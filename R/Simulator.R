@@ -90,8 +90,10 @@ Simulator<-function(n=100, # number of time points
   Price.Data<-matrix(0,n,(M+1))
   for (i in 1:n) {
     for (j in 1:(M+1)) {
+
       Cont.Price.Data[i,j]<- exp(-sum(cont.data[i,1:j]))
       Price.Data[i,j]<- exp(-sum(data[i,1:j]))
+
     }
   }
 
