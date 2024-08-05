@@ -71,7 +71,7 @@ Simulator<-function(n=100, # number of time points
 
 
 
-    # normalljumps<-numeric(n)
+    #normalljumps<-numeric(n)
     #for(i in 1: n){normalljumps[i]<-L2.norm(jump.samples[i,], from = 0, to = 10)}
     #plot(normalljumps)
   }##simulate the jump part
