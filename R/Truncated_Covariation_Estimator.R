@@ -13,7 +13,7 @@ Truncated.Covariation.estimator <- function(x,# discount curve data x[i,j]=p_{i\
                                            #################rescaled such that the first eigenvalue of
                                            ################# the preliminary estimator corresponds to
                                            ################# correspond to the interquartile estimate
-                                           l = 3###truncation level for the automatic truncation
+                                           l = 3,###truncation level for the automatic truncation
                                            sumplot = TRUE # when a summary plot should be made
 ){
   n= nrow(x) #number of days in which discount curves are considered
