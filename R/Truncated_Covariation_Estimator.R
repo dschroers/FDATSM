@@ -82,12 +82,12 @@ Truncated.Covariation.estimator <- function(x,# discount curve data x[i,j]=p_{i\
       plot(expl.var[1:10], type = "p", ylab = " Explained Variation", xlab = "Nr. of eigenvalues")
       abline(h = .99, col = "gray60")
       plot(norms, type = "l", ylab = "L2 norms of price curves", xlab = "time", xaxt = "n")
+      axis(side = 1, c(10,20,30,40,50,60,70,80,90,99), c(10,20,30,40,50,60,70,80,90,99))
       points(x=locs, y= norms[locs], col = "darkgreen")
-      axis(side = 1, 1:100, labels = seq(from = 0, to = 1, length.out=n))
 
       plot(adj.norms, type = "l", ylab = "L2 norms of difference returns", xlab = "time", xaxt = "n")
-      points(x=locs, y= adj.norms[locs], col = "darkgreen")
-      axis(side = 1, 1:99, labels = seq(from = 0, to = 1, length.out=(n-1)))
+      axis(side = 1, c(10,20,30,40,50,60,70,80,90,99), c(10,20,30,40,50,60,70,80,90,99))
+       points(x=locs, y= adj.norms[locs], col = "darkgreen")
     }
 
     locs<-locs+1 #To match the locations of the jumps price data
