@@ -51,10 +51,10 @@ Truncated.Covariation.estimator <- function(x,# discount curve data x[i,j]=p_{i\
 
 
   if(length(locs) == 0){
-    Truncated.variation<-Variation(adjusted.increments)
+    Truncated.variation<-Variation(adjusted.increments)/(n^2)
   }
   if(length(locs) != 0){
-    Truncated.variation<-Variation(adjusted.increments[-locs,])
+    Truncated.variation<-Variation(adjusted.increments[-locs,])/(n^2)
   }
   return(list("IV" = Truncated.variation, "locs" = locs, "C.Prel" =C.Prel, "adj.increments" = adjusted.increments))
 }
