@@ -112,7 +112,7 @@ SIM<-Simulator(100,100, q= q, k=k, f0=numeric(201))
 Now use the Truncated estimator to estimate the volatility
 
 ``` r
-Est<-Truncated.Covariation.estimator(x=SIM$Cont.Prices)
+Est<-Truncated.Covariation.estimator(x=SIM$Prices)
 ```
 
 <img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
@@ -127,5 +127,5 @@ The relative MSE in Hilbert-Schmidt norm is
 
 ``` r
 L2.HS.norm(Est$IV-q[1:99,1:99]/100)/L2.HS.norm(q[1:99,1:99]/100)
-#> [1] 0.1462048
+#> [1] 0.1229131
 ```

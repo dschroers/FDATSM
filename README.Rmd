@@ -95,7 +95,7 @@ SIM<-Simulator(100,100, q= q, k=k, f0=numeric(201))
 Now use the Truncated estimator to estimate the volatility
 
 ```{r}
-Est<-Truncated.Covariation.estimator(x=SIM$Cont.Prices)
+Est<-Truncated.Covariation.estimator(x=SIM$Prices)
 persp(Est$IV,xlab= "Time to maturity (years)")
 ```
 
