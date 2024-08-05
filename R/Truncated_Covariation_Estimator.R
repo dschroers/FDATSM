@@ -79,14 +79,15 @@ Truncated.Covariation.estimator <- function(x,# discount curve data x[i,j]=p_{i\
       }
       par(mfrow = c(2, 2))
       persp(Truncated.variation,xlab= "Time to maturity (years)")
-      plot(expl.var[1:10], type = "p")
+      plot(expl.var[1:10], type = "p", ylab = " Explained Variation", xlab = "Nr. of eigenvalues")
       abline(h = .99, col = "gray60")
-      plot(norms, type = "l")
+      plot(norms, type = "l", ylab = "L2 norms of price curves", xlab = "time")
       points(x=locs, y= norms[locs], col = "darkgreen")
-      plot(adj.norms, type = "l")
+      plot(adj.norms, type = "l", ylab = "L2 norms of difference returns", xlab = "time")
       points(x=locs, y= adj.norms[locs], col = "darkgreen")
     }
 
+    locs<-locs+1 #To match the locations of the jumps price data
   return(list("IV" = Truncated.variation, "locs" = locs, "C.Prel" =C.Prel, "adj.increments" = adjusted.increments, "expl.var" =expl.var))
 }
 
