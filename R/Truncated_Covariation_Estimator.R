@@ -81,11 +81,11 @@ Truncated.Covariation.estimator <- function(x,# discount curve data x[i,j]=p_{i\
       persp(Truncated.variation,xlab= "Time to maturity (years)")
       plot(expl.var[1:10], type = "p", ylab = " Explained Variation", xlab = "Nr. of eigenvalues")
       abline(h = .99, col = "gray60")
-      plot(norms, type = "l", ylab = "L2 norms of price curves", xlab = "time", x= "")
+      plot(norms, type = "l", ylab = "L2 norms of price curves", xlab = "time")
       points(x=locs, y= norms[locs], col = "darkgreen")
       axis(side = 1, labels = seq(from = 0, to = 1, length.out=n))
 
-      plot(adj.norms, type = "l", ylab = "L2 norms of difference returns", xlab = "time", x= "")
+      plot(adj.norms, type = "l", ylab = "L2 norms of difference returns", xlab = "time")
       points(x=locs, y= adj.norms[locs], col = "darkgreen")
       axis(side = 1, labels = seq(from = 0, to = 1, length.out=(n-1)))
     }
