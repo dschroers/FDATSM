@@ -65,12 +65,12 @@ Truncated.Covariation.estimator <- function(x,# discount curve data x[i,j]=p_{i\
       loads<-numeric(ncol(Truncated.variation))
       EG2<-eigen(Truncated.variation)
       for (i in 1:ncol(Truncated.variation)) {
-        loads<-sum(EG2$values[1:i])
+        loads[i]<-sum(EG2$values[1:i])
       }
       expl.var<-loads/sum(EG2$values)
       par(mfrow = c(1, 2))
       persp(Truncated.variation,xlab= "Time to maturity (years)")
-      plot(expl.var, type = "p")
+      plot(expl.var[1:10], type = "p")
     }
   return(list("IV" = Truncated.variation, "locs" = locs, "C.Prel" =C.Prel, "adj.increments" = adjusted.increments))
 }
