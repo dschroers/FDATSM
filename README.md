@@ -44,6 +44,7 @@ bond market is presented:
 library(FDATSM)
 library(pracma)
 library(MASS)
+library(matrixcalc)
 ## basic example code
 ```
 
@@ -72,7 +73,7 @@ q(x,y)= \exp(-10 (x-y)^2),
 which can be plotted:
 
 ``` r
-q<-Gaussian.cov(.1,100,100)
+q<-Gaussian.cov(10,100,100)
 persp(z=  q[1:100,1:100],xlab= "Time to maturity (years)", zlab = "", ylab = "")
 ```
 
@@ -103,3 +104,28 @@ persp(z=k[1:100,1:200],xlab= "Time to maturity (years)")
 ```
 
 <img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
+
+``` r
+SIM<-Simulator(100,100, q= q, k=k, f0=numeric(201))
+```
+
+Now use the Truncated estimator to estimate the volatility
+
+``` r
+Est<-Truncated.Covariation.estimator(x=SIM$Cont.Prices)
+```
+
+<img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
+
+``` r
+persp(Est$IV,xlab= "Time to maturity (years)")
+```
+
+<img src="man/figures/README-unnamed-chunk-4-2.png" width="100%" />
+
+The relative MSE in Hilbert-Schmidt norm is
+
+``` r
+L2.HS.norm(Est$IV-q[1:99,1:99]/100)/L2.HS.norm(q[1:99,1:99]/100)
+#> [1] 0.1462048
+```
