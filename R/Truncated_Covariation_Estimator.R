@@ -59,7 +59,6 @@ Truncated.Covariation.estimator <- function(x,# discount curve data x[i,j]=p_{i\
   }
 
 
-
     if(sumplot == TRUE){
       ##for the dimensionality analysis
       loads<-numeric(ncol(Truncated.variation))
@@ -70,8 +69,10 @@ Truncated.Covariation.estimator <- function(x,# discount curve data x[i,j]=p_{i\
       expl.var<-loads/sum(EG2$values)
       par(mfrow = c(1, 2))
       persp(Truncated.variation,xlab= "Time to maturity (years)")
-      plot(expl.var[1:11], type = "p")
+      plot(expl.var[1:10], type = "p")
+      abline(.99)
     }
+
   return(list("IV" = Truncated.variation, "locs" = locs, "C.Prel" =C.Prel, "adj.increments" = adjusted.increments))
 }
 
