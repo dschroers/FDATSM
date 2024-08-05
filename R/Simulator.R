@@ -77,7 +77,7 @@ Simulator<-function(n=100, # number of time points
   }##simulate the jump part
 {f0ev<-matrix(0,n,(M+1))
   for (i in 1:n) {
-    f0ev[i,]<-f0[i:(i+M)]
+    f0ev[i,]<-f0[i:(i+M+1)]
   }
   }#Evolution of the initial condition
 
