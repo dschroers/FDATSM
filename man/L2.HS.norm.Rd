@@ -7,15 +7,15 @@
 L2.HS.norm(M, from = 0, to = 1)
 }
 \arguments{
-\item{M}{xyz}
+\item{M}{Input matrix to compute the Hilbert-Schmidt norm}
 
-\item{from}{xyz}
+\item{from}{Start of the range}
 
-\item{to}{xyz}
+\item{to}{End of the range}
 }
 \value{
-xyz
+Scaled L2 Hilbert-Schmidt norm of M
 }
 \description{
-xyz
+This function computes the L2 Hilbert-Schmidt norm of a matrix M over a specified range
 }

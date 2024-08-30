@@ -4,31 +4,25 @@
 \alias{Truncated.Covariation.estimator}
 \title{Truncated covariation estimator}
 \usage{
-Truncated.Covariation.estimator(
-  adjusted.increments,
-  Threshhold.manually = FALSE,
-  quantile.adjustment = TRUE,
-  truncation = "sparse",
-  Prelim.truncation.quantile = 0.75,
-  l = 3
-)
+Truncated.Covariation.estimator(x, tq = 0.75, l = 3, sumplot = TRUE)
 }
 \arguments{
-\item{adjusted.increments}{xyz}
+\item{x}{x[i,j] is the discount curve data at thje i-th time point and j-th maturity}
 
-\item{Threshhold.manually}{xyz}
+\item{tq}{Quantile at which the data are truncated for the preliminary covariation estimate}
 
-\item{quantile.adjustment}{xyz}
+\item{l}{Truncation level}
 
-\item{truncation}{xyz}
-
-\item{Prelim.truncation.quantile}{xyz}
-
-\item{l}{xyz}
+\item{sumplot}{sumplot = TRUE produces a summary plot}
 }
 \value{
-xyz
+Returns a list which contains:
+  \item{IV}{The truncated covariation matrix}
+  \item{locs}{The locations of the identified jumps in price data}
+  \item{C.Prel}{The preliminary estimator of covariation}
+  \item{adj.increments}{The matrix of adjusted increments used for estimation}
+  \item{expl.var}{The explained variation based on the eigenvalues of the truncated covariation matrix}
 }
 \description{
-xyz
+This function computes a truncated estimator of covariation for a given matrix of discount curve data
 }

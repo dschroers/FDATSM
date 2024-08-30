@@ -1,10 +1,10 @@
 #' @title L2.HS.norm
-#' @description xyz
-#' @param M xyz
-#' @param from xyz
-#' @param to xyz
+#' @description This function computes the L2 Hilbert-Schmidt norm of a matrix M over a specified range
+#' @param M Input matrix to compute the Hilbert-Schmidt norm
+#' @param from Start of the range
+#' @param to End of the range
 #'
-#' @return xyz
+#' @return Scaled L2 Hilbert-Schmidt norm of M
 #' @export
 
 L2.HS.norm<-function(M, from =0, to = 1){

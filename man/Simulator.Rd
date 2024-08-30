@@ -11,7 +11,7 @@ Simulator(
   rho = 50,
   q,
   k,
-  f0 = numeric(n),
+  f0 = numeric(n + M + 1),
   jump.summary.plot = TRUE
 )
 }
