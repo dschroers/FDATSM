@@ -7,15 +7,15 @@
 L2.norm(v, from = 0, to = 1)
 }
 \arguments{
-\item{v}{xyz}
+\item{v}{Input vector to compute L2 norm}
 
-\item{from}{xyz}
+\item{from}{Start of the range}
 
-\item{to}{xyz}
+\item{to}{End of the range}
 }
 \value{
-xyz
+Scaled L2 norm of v
 }
 \description{
-xyz
+This function computes the L2 norm of a vector v over a specified range
 }

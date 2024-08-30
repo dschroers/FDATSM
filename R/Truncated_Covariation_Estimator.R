@@ -1,20 +1,26 @@
 #' @title Truncated covariation estimator
-#' @description xyz
-#' @param x xyz
-#' @param tq xyz
-#' @param l xyz
+#' @description This function computes a truncated estimator of covariation for a given matrix of discount curve data
+#' @param x x[i,j] is the discount curve data at thje i-th time point and j-th maturity
+#' @param tq Quantile at which the data are truncated for the preliminary covariation estimate
+#' @param l Truncation level
+#' @param sumplot sumplot = TRUE produces a summary plot
 #'
-#' @return xyz
+#' @return Returns a list which contains:
+#'   \item{IV}{The truncated covariation matrix}
+#'   \item{locs}{The locations of the identified jumps in price data}
+#'   \item{C.Prel}{The preliminary estimator of covariation}
+#'   \item{adj.increments}{The matrix of adjusted increments used for estimation}
+#'   \item{expl.var}{The explained variation based on the eigenvalues of the truncated covariation matrix}
 #' @export
 Truncated.Covariation.estimator <- function(x,# discount curve data x[i,j]=p_{i\Delta}(j\Delta)
                                            tq = 0.75, ## the quantile at which
                                            #################the data are truncated for the preliminary
                                            #################covariation estimate. The estimator is then
                                            #################rescaled such that the first eigenvalue of
-                                           ################# the preliminary estimator corresponds to
-                                           ################# correspond to the interquartile estimate
-                                           l = 3,###truncation level for the automatic truncation
-                                           sumplot = TRUE # when a summary plot should be made
+                                           #################the preliminary estimator corresponds to
+                                           #################correspond to the interquartile estimate
+                                           l = 3,
+                                           sumplot = TRUE
 ){
   n= nrow(x) #number of days in which discount curves are considered
   m= ncol(x) #number of days in the maturity direction
