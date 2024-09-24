@@ -4,6 +4,10 @@
 #' @param j Index for second interval
 #' @param Delta Length of each interval
 #' @return Integral value
+#' @import pracma
+#' @import matrixcalc
+#' @import MASS
+#' @import plot3D
 #' @export
 integral.Exponential.kernel<- function(i,j,Delta = 1/M){# Calculates < Q_2 1_{[(j-1)Delta,jDelta],1_{[(j-1)Delta,jDelta]>}
   fun <- function(x,y){

@@ -35,9 +35,6 @@ Subsequently, a simple example for the analysis of covariations in the bond mark
 
 ```{r example}
 library(FDATSM)
-library(pracma)
-library(MASS)
-library(matrixcalc)
 ## basic example code
 ```
 
@@ -63,7 +60,21 @@ which can be plotted:
 
 ```{r}
 q<-Gaussian.cov(10,100,100)
-persp(z=  q[1:100,1:100],xlab= "Time to maturity (years)", zlab = "", ylab = "")
+
+#Plot
+persp3D(z = q[1:100, 1:100], 
+        cex.lab = 0.8,
+        theta = 0, phi = 20, 
+        colkey = list(
+          length = 0.5, width = 1, 
+          cex.clab = 0.8,
+          at = c(min(q), max(q)), 
+          labels = c("low", "high")
+        ),
+        clab = "Covariance",
+        xlab = "Time to maturity (years)", 
+        ylab = "", 
+        zlab = "")
 ```
 
 The jump process $J$ is a compound Poisson process in $L^2(0,1)$ and is given as 
@@ -83,7 +94,19 @@ which can be plotted:
 
 ```{r}
 k<-10*Exponential.cov(100,100)
-persp(z=k[1:100,1:200],xlab= "Time to maturity (years)")
+persp3D(z = k[1:100, 1:100], 
+        cex.lab = 0.8, 
+        theta = 0, phi = 20, 
+        colkey = list(
+          length = 0.5, width = 1, 
+          cex.clab = 0.8, 
+          at = c(min(k), max(k)), 
+          labels = c("low", "high")
+        ),
+        clab = "Covariance",
+        xlab = "Time to maturity (years)", 
+        ylab = "", 
+        zlab = "")
 ```
 
 
