@@ -35,6 +35,9 @@ Subsequently, a simple example for the analysis of covariations in the bond mark
 
 ```{r example}
 library(FDATSM)
+library(pracma)
+library(plot3D)
+library(MASS)
 ## basic example code
 ```
 
