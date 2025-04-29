@@ -1,47 +1,53 @@
-#' @title Functional Data Truncation
-#' @description This function calculates the truncation function for each datum and then determines truncation locations
-#' @param d Number of inverted eigenvalues
-#' @param C Statistical covariance matrix
-#' @param data Data matrix (rows = time)
-#' @param Delta Increment size
-#' @param sd Number of standard deviations truncated
-#'
-#' @return List containing the truncation function values and truncation locations
-#' @export
-Functional.data.truncation<-function(d, ### number of inverted eigenvalues
+# Internal helper function
+# Computes a truncation function for each functional datum and determines
+# the truncation locations based on a thresholding rule.
+#
+# Parameters:
+#   d     - Number of inverted eigenvalues (components) used
+#   C     - Covariance matrix
+#   data  - Data matrix (rows represent time points, columns = observations)
+#   Delta - Increment size
+#   sd    - Number of standard deviations used for truncation threshold
+#
+# Returns:
+#   A list with:
+#     - 'gn': vector of truncation function values
+#     - 'locations': indices or positions where truncation occurs
+
+functional_data_truncation<-function(d, ### number of inverted eigenvalues
                                      C, ### stat. covariance matrix
                                      data, ### data matrix (rows = time)
                                      Delta, ###increment size
                                      sd ### number of 'standard deviations' truncated
 ){
-  #####First calculate for each datum the truncation function gn
   E<-eigen(C)
-  n=nrow(data)
-  gn<-numeric(n)
-  for (i in (1:n)) {
-    for (j in 1:d) {
-      gn[i]<-gn[i]+((data[i,]%*%E$vectors[,j])^2/(E$values[j]))###first part of g_n
-    }
-    second.part.gn.scores<-0
-    for (j in ((d+1):length(E$values))) {
-      second.part.gn.scores<-second.part.gn.scores+(data[i,]%*%E$vectors[,j])^2
-    }
-    second.part.gn.scores<-second.part.gn.scores/sum(E$values[(d+1):length(E$values)])###second part of the scores
 
-    gn[i]<-gn[i]+second.part.gn.scores
-
-    gn[i]<-sqrt(gn[i])
+  # Input validation
+  if ((d + 1) > length(E$values)) {
+    stop("Error: The number of eigenvalues 'd' should be at most min(100, ncol(C)).")
   }
-  ## now create Boolean vector for checking if truncation happens
+
+  n<-nrow(data)
+
+  #Calculate the values of the truncation function
+  gn<-numeric(n)
+  for (i in 1:n) {
+    x <- data[i, ]
+
+    # First part of g_n (sum of first 'd' components)
+    g1 <- sum((x %*% E$vectors[, 1:d])^2 / E$values[1:d])
+
+    # Second part of g_n (remaining components, if any)
+      idx <- seq(d + 1, length(E$values))
+      g2_num <- sum((x %*% E$vectors[, idx])^2)
+      g2_den <- sum(E$values[idx])
+      g2 <- g2_num / g2_den
+
+      #take the squareroot of their sum
+    gn[i] <- sqrt(g1 + g2)
+  }
+
+  #Identify truncation locations
   truncation.locations<-which(gn > (sd*sqrt(d+1)*Delta^(0.49)))
   return(list("gn" = gn , "locations" = truncation.locations))
-}###fine truncation locations
-
-
-L2.norm<-function(v, from =0, to = 1){
-  (norm(v, type = "2")*(to-from))/sqrt(length((v)))
-}##calculates the L^2 norm
-## of a piecewise constant covariance operator on L^2([from,to])
-L2.HS.norm<-function(M, from =0, to = 1){
-  (hilbert.schmidt.norm(M)*(to-from))/nrow(M)}##calculates the Hilbert Schmidt norm
-## of a piecewise constant covariance operator on L^2([from,to])
+}

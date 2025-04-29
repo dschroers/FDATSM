@@ -2,18 +2,21 @@ Package: FDATSM
 Type: Package
 Title: Functional Data Analysis for Covariations in Term Structure Models
 Version: 0.1.0
-Author: Dennis Schroers
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Author@R: person("Dennis Schroers", email= "dschroer@uni-bonn.de", role = c("aut", "cre"))
+Maintainer: Dennis Schroers <dschroer@uni-bonn.de>
+Description: Description: Provides tools for analyzing realized covariations of difference returns and the term structure of volatility in bond markets, as introduced in "Dynamically Consistent Analysis of Realized Covariations in Term Structure Models" (Schroers, 2024). Designed for use with daily yield or discount curve data, the package enables robust estimation of the covolatility kernel of instantaneous forward curves. Includes methods for preprocessing real-world bond market data, handling incomplete maturity grids, and detecting jumps in volatility.
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.3.1
+Depends: R(>= 3.5.0)
 Imports: 
     MASS,
     matrixcalc,
     plot3D,
     pracma,
-    fda,
-    readxl
+    splines,
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+URL: https://dschroers.github.io/FDATSM/

@@ -1,20 +1,16 @@
-#' @title D-star
-#' @description This function determines the number d of factors needed to explain percentage rho of the variation induced by covariance matrix C
-#' @param C Covariance matrix
-#' @param rho Percentage of variation to be explained
-#'
-#' @return Number d of factors needed to explain rho percent of the variation
-#' @export
+# Internal helper function
+# Computes the number of principal components (factors) needed to explain
+# a specified percentage of total variance from a covariance matrix.
+#
+# Parameters:
+#   C   - A covariance matrix (assumed to be symmetric and square)
+#   rho - Proportion of variance to be explained (between 0 and 1)
+#
+# Returns:
+#   The minimum number of components (d) needed to explain at least rho of the total variance.
 
-d.star<-function(C,rho){
-  len<-length(eigen(C)$values)
-  scores<-numeric(len)
-  scores
-  for (i in 1:len) {
-    scores[i]<-sum(eigen(C)$values[1:i])
-  }
-  scores<-scores/sum(eigen(C)$values)
-
-  return(min(which(scores>=rho)))
-}# function chooses d such that d
-#factors explain rho percent of the variation induced by C
+d_star<-function(C,rho =.9){
+  eigvals <- eigen(C, only.values = TRUE)$values
+  scores <- cumsum(eigvals) / sum(eigvals)
+  return(min(which(scores >= rho)))
+}

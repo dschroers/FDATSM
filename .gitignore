@@ -1,11 +1,23 @@
-.Rproj.user
+# R-specific
 .Rhistory
-<<<<<<< HEAD
 .RData
+.Rproj.user/
 .Ruserdata
-=======
-.Rdata
-.httr-oauth
+*.Rproj
+
+# R build files
+.Rcheck/
+.Rbuildignore
 .DS_Store
-.quarto
->>>>>>> aee7f1813d42cdd3ced2b642a6218e84f1d7da8b
+
+# devtools and build artifacts
+*.tar.gz
+*.pdf
+/FDATSM.Rproj
+.Rout
+.Rout.save
+
+# docs and site
+docs/
+_site/
+docs

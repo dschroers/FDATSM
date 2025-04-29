@@ -1,27 +1,15 @@
-#' @title Calculator of the semigroup-adjusted realized covariation (SARCV)
-#' @description This function takes the increments and calculates the SARCV
-#' @param Incr Increments in form of a numeric matrix
-#'
-#' @return SARCV as a symmetric matrix
-#' @export
-Variation <- function(Incr){
-  n<- nrow(Incr)
-  m<-ncol(Incr)
-  sqIncr<-array(data = Incr, dim = c(n,m,m))
-  for (i in 1:n) {
-    sqIncr[i,,]<-Incr[i,]%*%t(Incr[i,])
-  }
-  rcv<-matrix(0,m,m)
-  for (i in 1:m) {
-    for (j in 1:i) {
-      rcv[i,j]<-sum(sqIncr[,i,j])
-    }
-  }
-  for (i in 1:m-1) {
-    for (j in (i+1):m) {
-      rcv[i,j]<- rcv[j,i]
-    }
-  }
-  return(rcv)
-}####
+# Internal helper function
+# Calculates the sum of tensor (outer) products of the rows in a matrix of increments.
+# This can be used to compute the realized coavriation.
+#
+# Parameters:
+#   Incr - A numeric matrix of increments (each row = an increment vector).
+#
+# Returns:
+#   A symmetric matrix representing the sum of outer products across all increments.
+
+variation <- function(Incr){
+  return(t(Incr) %*% Incr)
+}
+
 

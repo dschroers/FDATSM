@@ -1,0 +1,13 @@
+bibentry(
+  bibtype  = "Article",
+  title    = "Dynamically consistent analysis of realized covariations in term structure models",
+  author   = "Dennis Schroers",
+  journal  = "arXiv preprint https://arxiv.org/abs/2406.19412",
+  year     = "2024",
+  volume   = ,
+  number   = ,
+  pages    = ,
+ textVersion = paste(
+  "Schroers, D. (2024). Dynamically consistent analysis of realized covariations in term structure models. arXiv preprint arXiv:2406.19412."
+  )
+)

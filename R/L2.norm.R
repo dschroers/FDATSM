@@ -1,13 +1,22 @@
-#' @title L2.norm
-#' @description This function computes the L2 norm of a vector v over a specified range
-#' @param v Input vector to compute L2 norm
-#' @param from Start of the range
-#' @param to End of the range
+#' @title L2 Norm of a Discretized Function
+#' @description Computes the \eqn{L^2([from, to])}-norm of a discretized function (vector).
+#' Assumes the function is evaluated at equally spaced grid points over the interval \code{[from, to]}.
 #'
-#' @return Scaled L2 norm of v
+#' @param v Numeric vector representing values of a discretized function.
+#' @param from Start of the interval (default is 0).
+#' @param to End of the interval (default is 1).
+#'
+#' @return Numeric value of the approximated \eqn{L^2([from, to])} norm.
+#'
 #' @export
+#'
+#' @examples
+#' x <- seq(0, 1, length.out = 100)
+#' f <- sin(pi * x)
+#' L2_norm(f)
 
-L2.norm<-function(v, from =0, to = 1){
-  (norm(v, type = "2")*(to-from))/sqrt(length((v)))
+L2_norm <- function(v, from = 0, to = 1) {
+  n <- length(v)
+  delta <- (to - from) / n
+  sqrt(sum(v^2) * delta)
 }
-
