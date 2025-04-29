@@ -35,8 +35,9 @@ jobs:
             install_path = file.path(normalizePath(Sys.getenv("RUNNER_TEMP"), winslash = "/"), "package")
           )
           print(cov)
-          covr::to_cobertura(cov)
-        shell: Rscript {0}
+          xml <- covr::to_cobertura(cov)
+          writeLines(xml, "cobertura.xml")
+shell: Rscript {0}
 
       - uses: codecov/codecov-action@v5
         with:
