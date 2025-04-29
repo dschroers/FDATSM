@@ -1,11 +1,9 @@
-# Workflow derived from https://github.com/r-lib/actions/tree/v2/examples
-# Need help debugging build failures? Start at https://github.com/r-lib/actions#where-to-find-help
+name: test-coverage.yaml
+
 on:
   push:
     branches: [main, master]
   pull_request:
-
-name: test-coverage.yaml
 
 permissions: read-all
 
@@ -37,16 +35,13 @@ jobs:
           print(cov)
           xml <- covr::to_cobertura(cov)
           writeLines(xml, "cobertura.xml")
-shell: Rscript {0}
+        shell: Rscript {0}
 
       - uses: codecov/codecov-action@v5
         with:
-          # Fail if error if not on PR, or if on PR and token is given
-          fail_ci_if_error: ${{ github.event_name != 'pull_request' || secrets.CODECOV_TOKEN }}
           files: ./cobertura.xml
           plugins: noop
           disable_search: true
-          token: ${{ secrets.CODECOV_TOKEN }}
 
       - name: Show testthat output
         if: always()
